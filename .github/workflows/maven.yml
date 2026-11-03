@@ -10,10 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: giav-associacao-acao-vida/giav-projeto/giav-associacao-acao-vida
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -23,4 +19,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build and Test with Maven
-      run: mvn clean test
+      run: mvn clean test -f ./giav-associacao-acao-vida/giav-projeto/giav-associacao-acao-vida/pom.xml
