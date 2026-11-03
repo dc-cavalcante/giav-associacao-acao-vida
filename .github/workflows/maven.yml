@@ -12,7 +12,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: giav-associacao-acao-vida
+        working-directory: giav-associacao-acao-vida/giav-projeto/giav-associacao-acao-vida
 
     steps:
     - uses: actions/checkout@v4
