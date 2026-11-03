@@ -18,5 +18,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build and Test with Maven
-      run: mvn clean test -f giav-associacao-acao-vida/giav-projeto/giav-associacao-acao-vida/pom.xml
+    - name: Find and Build with Maven
+      run: |
+        POM_PATH=$(find . -name "pom.xml" -not -path "*/.*" | head -n 1)
+        echo "Encontrado pom.xml em: $POM_PATH"
+        mvn clean test -f "$POM_PATH"
