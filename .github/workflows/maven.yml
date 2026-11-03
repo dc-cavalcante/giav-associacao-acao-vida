@@ -19,4 +19,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build and Test with Maven
-      run: mvn clean test -f ./giav-associacao-acao-vida/giav-projeto/giav-associacao-acao-vida/pom.xml
+      run: mvn clean test -f giav-associacao-acao-vida/giav-projeto/giav-associacao-acao-vida/pom.xml
