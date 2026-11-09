@@ -1,0 +1,229 @@
+/* Configurações Globais */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Estilos da Página de Login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Menu Lateral Fixo */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #1a222d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-menu a {
+    padding: 15px 20px;
+    color: #b0c4de;
+    text-decoration: none;
+    display: block;
+    transition: 0.2s;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    background-color: #2c3e50;
+    color: #ffffff;
+    border-left: 4px solid #3498db;
+}
+
+/* Cabeçalho Superior Fixo */
+.top-header {
+    margin-left: 250px;
+    height: 60px;
+    background: white;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.header-title {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Conteúdo Principal das Secções */
+.pagina-conteudo {
+    margin-left: 250px;
+    padding: 30px;
+}
+
+/* Tabelas e Componentes */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.data-table th {
+    background-color: #f1f3f5;
+    color: #495057;
+}
+
+.btn-primary {
+    background-color: #3f6891;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #34495e;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge.active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Modo de Alto Contraste (Acessibilidade) */
+body.high-contrast {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+}
+body.high-contrast .sidebar, 
+body.high-contrast .login-box {
+    background-color: #111111 !important;
+    border-right: 2px solid #ffff00;
+}
+body.high-contrast .top-header, 
+body.high-contrast .pagina-conteudo div, 
+body.high-contrast .data-table {
+    background-color: #1a1a1a !important;
+    color: #ffff00 !important;
+    border-color: #ffff00 !important;
+}
+
+@media print {
+    /* Oculta apenas o menu lateral, o cabeçalho superior e os botões de ação */
+    aside.sidebar,
+    .top-header,
+    .actions-bar,
+    button,
+    .btn-primary,
+    .btn-secondary {
+        display: none !important;
+    }
+
+    /* Força a página principal e a secção ativa a ficarem visíveis e sem margens de ecrã */
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+
+    #app-principal {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Mostra explicitamente a secção de doações/estoque na impressão */
+    #secao-doacoes {
+        display: block !important;
+        visibility: visible !important;
+        position: static !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Garante que todas as tabelas e títulos saem visíveis e bem formatados no papel */
+    h2, h3 {
+        color: #000 !important;
+        page-break-after: avoid;
+    }
+
+    table.data-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin-top: 10px !important;
+        margin-bottom: 20px !important;
+        page-break-inside: auto;
+    }
+
+    table.data-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    table.data-table th, 
+    table.data-table td {
+        border: 1px solid #333 !important;
+        padding: 8px !important;
+        color: #000 !important;
+        background-color: transparent !important;
+    }
+
+    table.data-table th {
+        background-color: #f2f2f2 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
