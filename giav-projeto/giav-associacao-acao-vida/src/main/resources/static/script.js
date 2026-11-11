@@ -127,7 +127,7 @@ async function registarFamilia(event) {
     };
 
     try {
-        const resFam = await fetch('http://localhost:8080/familias', {
+        const resFam = await fetch('/familias', {
             method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dadosFamilia)
         });
 
@@ -146,7 +146,7 @@ async function registarFamilia(event) {
                     familia: { id: familiaSalva.id }
                 };
 
-                await fetch('http://localhost:8080/beneficiarios', {
+                await fetch('beneficiarios', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dadosBeneficiario)
                 });
             }
@@ -165,7 +165,7 @@ async function registarFamilia(event) {
 
 async function carregarFamilias() {
     try {
-        const res = await fetch('http://localhost:8080/familias');
+        const res = await fetch('/familias');
         const lista = await res.json();
         const tbody = document.querySelector('#tabela-familias tbody');
         tbody.innerHTML = '';
@@ -199,7 +199,7 @@ async function excluirFamilia(id) {
     }
 
     try {
-        const res = await fetch(`http://localhost:8080/familias/${id}`, {
+        const res = await fetch(`/familias/${id}`, {
             method: 'DELETE'
         });
 
@@ -236,7 +236,7 @@ async function registarRecebimento(event) {
     };
     
     try {
-        const res = await fetch('http://localhost:8080/doacoes', {
+        const res = await fetch('/doacoes', {
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' }, 
             body: JSON.stringify(dados)
@@ -264,7 +264,7 @@ async function registarEntrega(event) {
     const chaveDesejada = nomeItemDesejado.toLowerCase().replace(/\s+/g, ' ');
 
     try {
-        const res = await fetch('http://localhost:8080/doacoes');
+        const res = await fetch('/doacoes');
         const lista = await res.json();
         
         let totalRecebido = 0;
@@ -306,7 +306,7 @@ async function registarEntrega(event) {
             familia: { id: parseInt(document.getElementById('ent-familia-id').value) }
         };
 
-        const resEnvio = await fetch('http://localhost:8080/doacoes', {
+        const resEnvio = await fetch('/doacoes', {
             method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dados)
         });
 
@@ -327,7 +327,7 @@ async function registarEntrega(event) {
 // --- FUNÇÃO PARA CARREGAR E SEPARAR DOAÇÕES / ESTOQUE ---
 async function carregarDoacoesSeparadas() {
     try {
-        const res = await fetch('http://localhost:8080/doacoes');
+        const res = await fetch('/doacoes');
         const lista = await res.json();
 
         const tbodyRecebimentos = document.querySelector('#tabela-recebimentos tbody');
@@ -431,14 +431,14 @@ async function carregarDoacoesSeparadas() {
 // --- MÉTRICAS DO PAINEL GERAL ---
 async function carregarDadosGerais() {
     try {
-        const resFam = await fetch('http://localhost:8080/familias');
+        const resFam = await fetch('/familias');
         const fams = await resFam.json();
         document.getElementById('card-qtd-familias').innerText = fams.length;
 
         let totalMembros = fams.reduce((acc, f) => acc + (f.quantidadeMembros || 1), 0);
         document.getElementById('card-qtd-beneficiarios').innerText = totalMembros;
 
-        const resDoa = await fetch('http://localhost:8080/doacoes');
+        const resDoa = await fetch('/doacoes');
         const doas = await resDoa.json();
         let entregas = doas.filter(d => d.dataDoacao || d.familia);
         document.getElementById('card-qtd-doacoes').innerText = entregas.length;
@@ -448,10 +448,10 @@ async function carregarDadosGerais() {
 async function imprimirRelatorio() {
     try {
         // 1. Busca os dados mais recentes das tabelas via API
-        const resDoa = await fetch('http://localhost:8080/doacoes');
+        const resDoa = await fetch('/doacoes');
         const listaDoacoes = await resDoa.json();
 
-        const resFam = await fetch('http://localhost:8080/familias');
+        const resFam = await fetch('/familias');
         const listaFamilias = await resFam.json();
 
         // 2. Cria uma nova janela limpa no navegador
